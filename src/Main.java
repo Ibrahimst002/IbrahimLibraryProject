@@ -1,54 +1,74 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+
 public class Main {
+    // This is where the program execution starts (the main method)
     public static void main(String[] args) {
 
-        Scanner obj=new Scanner(System.in);
+        SLibrary sLibrary = new SLibrary(); // instantiating the library class
+        Scanner scanner = new Scanner(System.in);
 
-        String pick;
-        int choice =0;
-        while(choice !=3){
+        System.out.println("\n         WELCOME TO RAPASCO JUNIOR LIBRARY SYSTEM");
+        System.out.println("<<==>>".repeat(10));
 
-            System.out.println("Welcome to Rapasco University library");
-            System.out.println("Enter 1- for Student details \n" +
-                    "Enter 2- for Library books");
-            choice =obj.nextInt();
 
-            // if this condition is true it will execute student details
-            if (choice == 1) {
+        while (true) { // default output to ask the user's choice
+            System.out.println("\nLibrary Management System Menu:");
+            System.out.println("1. Add Book");
+            System.out.println("2. Display All Books");
+            System.out.println("3. Delete Book");
+            System.out.println("4. Search Book");
+            System.out.println("6. Borrow Book");
+            System.out.println("5. Exit");
+            System.out.println("Enter your choice: ");
 
-                StudentInfo obj1=new StudentInfo();
-                System.out.println("Enter student's name");
+            System.out.println("==".repeat(30));
 
-                // asking input from the console
-                obj1.name=obj.nextLine();
-                obj1.name=obj.nextLine();
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline asking input from the user
 
-                System.out.println("Enter your department");
-                obj1.depart =obj.nextLine();
-                System.out.println("Enter the User id");
-                obj1.uni_id=obj.nextLine();
-                System.out.println("Enter university id");
-                obj1.uid=obj.nextLine();
-                System.out.println("What year are you currently in? 1,2 or 3:");
-                obj1.sem=obj.nextInt();
+            // this will display the choice of the user base on case input
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter book title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter book author: ");
+                    String author = scanner.nextLine();
+                    sLibrary.addBook(new SBook(title, author));
+                    System.out.println("Book added successfully!");
+                    System.out.println("==".repeat(30));
+                    break;
+                case 2:
+                    System.out.println("List of all books:");
+                    SLibrary.displayBooks();
+                    System.out.println("==".repeat(30));
+                    break;
+                case 3:
+                    sLibrary.dBooks();
+                    System.out.println("==".repeat(30));
+                    break;
+                case 6:
+                    sLibrary.bBooks();
+                    System.out.println("==".repeat(30));
 
-                obj1.getdata(obj1.name, obj1.depart, obj1.uid,obj1.uni_id,obj1.sem);
-                obj1.setdata();
+                    break;
+                case 4:
+                    System.out.print("Enter book title to search: ");
+                    String searchTitle = scanner.nextLine();
+                    sLibrary.searchBook(searchTitle);
+                    System.out.println("==".repeat(30));
+                    break;
+                case 5:
+                    System.out.println("Exiting program. Goodbye!");
+                    System.exit(0);
+                    System.out.println("<<==>>".repeat(10));
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+                    System.out.println("<<==>>".repeat(10));
             }
-            // if this condition is true it will give access to the library books
-            else if(choice ==2){
-                libraryBooks depart=new libraryBooks();
-
-                depart.ComputerS();
-                depart.publicHealth();
-                depart.biology();
-
-            }
-
         }
     }
+
 
 }
 

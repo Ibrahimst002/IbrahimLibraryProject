@@ -1,18 +1,20 @@
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-    // This is where the program execution starts (the main method)
+
     public static void main(String[] args) {
+        // This is where the program execution starts (the main method)
 
         SLibrary sLibrary = new SLibrary(); // instantiating the library class
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n         WELCOME TO RAPASCO JUNIOR LIBRARY SYSTEM");
+        Date date =new Date(); System.out.println(date);
         System.out.println("<<==>>".repeat(10));
 
-
         while (true) { // default output to ask the user's choice
-            System.out.println("\nLibrary Management System Menu:");
+            System.out.println("Library Management System Menu:");
             System.out.println("1. Add Book");
             System.out.println("2. Display All Books");
             System.out.println("3. Delete Book");
@@ -27,6 +29,7 @@ public class Main {
             scanner.nextLine(); // Consume newline asking input from the user
 
             // this will display the choice of the user base on case input
+
             switch (choice) {
                 case 1:
                     System.out.print("Enter book title: ");
@@ -49,7 +52,10 @@ public class Main {
                 case 6:
                     sLibrary.bBooks();
                     System.out.println("==".repeat(30));
-
+                    break;
+                case 7:
+                    sLibrary.balanceBooks();
+                    System.out.println("==".repeat(30));
                     break;
                 case 4:
                     System.out.print("Enter book title to search: ");

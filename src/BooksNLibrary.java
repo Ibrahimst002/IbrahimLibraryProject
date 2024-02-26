@@ -13,7 +13,6 @@ class SBook { // book class to hold the title and the name of the author
         this.author = author;
         this.available = true;
     }
-
     public String getTitle() {
         return title;
     }
@@ -21,10 +20,7 @@ class SBook { // book class to hold the title and the name of the author
     public String getAuthor() {
         return author;
     }
-
 }
-
-
 class SLibrary<SBooks> { // the library class
     private static ArrayList<SBook> SBooks;
     public SLibrary() {
@@ -33,9 +29,14 @@ class SLibrary<SBooks> { // the library class
 
     // method to display all the books in the library
     public static void displayBooks() {
-        for (SBook SBook : SBooks) {
-            System.out.println("Title: " + SBook.getTitle() + ", Author: " + SBook.getAuthor());
+        try {
+            for (SBook SBook : SBooks) {
+                System.out.println("Title: " + SBook.getTitle() + ", Author: " + SBook.getAuthor());
+            }
+        }catch (Exception e){
+            System.out.println("wrong input");
         }
+
     }
     public void addBook(SBook SBook) {
         SBooks.add(SBook);
@@ -53,7 +54,6 @@ class SLibrary<SBooks> { // the library class
         }
 
     }
-
     public void bBooks(){
         try{
             Scanner scan = new Scanner(System.in);
@@ -66,12 +66,23 @@ class SLibrary<SBooks> { // the library class
         }
     }
     public void searchBook(String title) {
-        for (SBook SBook : SBooks) {
-            if (SBook.getTitle().equalsIgnoreCase(title)) {
-                System.out.println("Book found - Title: " + SBook.getTitle() + ", Author: " + SBook.getAuthor());
-                return;
+
+            for (SBook SBook : SBooks) {
+                if (SBook.getTitle().equalsIgnoreCase(title)) {
+                    System.out.println("Book found - Title: " + SBook.getTitle() + ", Author: " + SBook.getAuthor());
+                    return;
+                }
             }
-        }
+
         System.out.println("Book not found with title: " + title);
+    }
+    int sum =0;
+    public void balanceBooks(){
+
+        for(int i = 0; i > SBooks.size(); i++ ){
+            sum+=i;
+            System.out.println(sum);
+        }
+
     }
 }
